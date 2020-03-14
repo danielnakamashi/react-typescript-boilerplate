@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 module.exports = (env: { [key: string]: string }, argv: Configuration): Configuration => {
   const configProd = {
-    entry: path.resolve(__dirname, './src/components/Editor/index.tsx'),
+    entry: path.resolve(__dirname, './src/components/App/index.tsx'),
     output: {
       path: path.resolve(__dirname, './lib'),
       libraryTarget: 'commonjs2',
@@ -18,7 +18,6 @@ module.exports = (env: { [key: string]: string }, argv: Configuration): Configur
     devServer: {
       historyApiFallback: true,
     },
-    devtool: 'source-map',
     plugins: [
       new HtmlWebpackPlugin({
         title: 'Simple JSON editor',
@@ -30,6 +29,7 @@ module.exports = (env: { [key: string]: string }, argv: Configuration): Configur
 
   return {
     ...(argv.mode === 'development' ? configDev : configProd),
+    devtool: 'source-map',
     module: {
       rules: [
         {
